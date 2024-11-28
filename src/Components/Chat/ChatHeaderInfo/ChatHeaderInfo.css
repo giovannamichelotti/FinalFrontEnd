@@ -1,0 +1,88 @@
+.chat-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0;
+    background-color: #202C33;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+}
+
+.chat-header form {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.chat-header form input {
+    width: 100%;
+}
+
+.imagen-chat {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.flecha {
+    color: #E9EDEF;
+    font-size: 20px;
+}
+
+.contacto-total {
+    color: #E9EDEF;
+}
+
+.contacto-total .contacto-nombre {
+    font-size: 20px;
+    font-weight: 650;
+    padding: 0;
+}
+
+.contacto-total .ultima-conexion {
+    padding: 0;
+}
+
+.iconos-header {
+    display: flex;
+    align-items: center;
+    align-items: end;
+    font-size: 25px;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 400px) {
+    .imagen-chat {
+        width: 30px;
+        height: 30px;
+        margin: 0;
+        padding: 0;
+    }
+    .flecha {
+        font-size: 10px;
+        margin: 0;
+        padding: 0;
+    }
+    .contacto-total .contacto-nombre {
+        font-size: 13px;
+        font-weight: 650;
+        margin: 0;
+        padding: 0;
+    }
+    .contacto-total .ultima-conexion {
+        font-size: 10px;
+        margin: 0;
+        padding: 0;
+    }
+    .iconos-header {
+        font-size: 15px;
+        /* si pongo el margin: 0 se me pegan los iconos a la informacion del contacto */
+    }
+}

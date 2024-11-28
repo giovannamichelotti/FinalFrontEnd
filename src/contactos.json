@@ -1,0 +1,356 @@
+[
+    {
+        "nombre": "Arya Stark",
+        "imagen": "AryaStark.jpg",
+        "ultima_conexion": "hoy a las 23:30",
+        "id": 1,
+        "nro": "11-4411-0511",
+        "mensajes": [
+            {
+                "autor": "Arya Stark",
+                "texto": "Not today", 
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "23:00",
+                "id": "1"
+            },
+            {
+            "autor": "yo",
+            "texto": "¿Qué decís, Arya?",
+            "estado": "visto",
+            "dia": "hoy",
+            "hora": "23:07",
+            "id": "2"
+            },
+            {
+                "autor": "Arya Stark",
+                "texto": "Hoy no es momento de la muerte",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "23:09",
+                "id": "3"
+            },
+            {
+                "autor": "yo",
+                "texto": "Aaah, obvio, chica de las multiples caras",
+                "estado": "entregado",
+                "dia": "hoy",
+                "hora": "23:10",
+                "id": "4"
+            },
+            {
+                "autor": "Arya Stark",
+                "texto": "No reveles mi secreto",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "23:11",
+                "id": "5"
+            }
+        ]
+    },
+    {
+        "nombre": "Daenerys Targaryen",
+        "imagen": "Daenerys.jpg",
+        "ultima_conexion": "hoy a las 23:00",
+        "id": 2,
+        "nro":  "11-4411-0512",
+        "mensajes": [
+            {
+                "autor": "yo",
+                "texto": "¿Cómo están tus dragones?",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "22:45",
+                "id": "1"
+            },
+            {
+                "autor": "Daenerys Targaryen",
+                "texto": "Están para prender fuego todo Poniente",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "22:47",
+                "id": "2"
+            },
+            {
+                "autor": "yo",
+                "texto": "¿No te parece mucho?",
+                "estado": "entregado",
+                "dia": "hoy",
+                "hora": "22:48",
+                "id": "3"
+            }
+        ]
+    },
+    {
+        "nombre": "Jon Snow",
+        "imagen": "JonSnow.jpg",
+        "ultima_conexion": "hoy a las 22:45",
+        "id": 3,
+        "nro": "11-4411-0513",
+        "mensajes": [
+            {
+                "autor": "Jon Snow",
+                "texto": "El invierno está aquí",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "22:00",
+                "id": "1"
+            },
+            {
+                "autor": "yo",
+                "texto": "No lo puedo creer, pensé que faltaba",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "22:03",
+                "id": "2"
+            },
+            {
+                "autor": "Jon Snow",
+                "texto": "Hay que atacar ahora",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "22:09",
+                "id": "3"
+            },
+            {
+                "autor": "yo",
+                "texto": "Te pegó bien la resucitada",
+                "estado": "entregado",
+                "dia": "hoy",
+                "hora": "22:10",
+                "id": "4"
+            }
+        ]
+    },
+    {
+        "nombre": "Cersei Lannister",
+        "imagen": "Cersei.jpg",
+        "ultima_conexion": "hoy a las 22:00",
+        "id": 4,
+        "nro": "11-4411-0514",
+        "mensajes": [
+            {
+                "autor": "Cersei Lannister",
+                "texto": "¿Te gustó como exploté la ciudad?",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "21:48",
+                "id": "1"
+            },
+            {
+                "autor": "yo",
+                "texto": "No, la verdad que deberías haber explotado vos",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "21:49",
+                "id": "2"
+            },
+            {
+                "autor": "Cersei Lannister",
+                "texto": "Jajaja, jamás va a pasar",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "21:53",
+                "id": "3"
+            },
+            {
+                "autor": "yo",
+                "texto": "Ya te va a llegar tu hora",
+                "estado": "entregado",
+                "dia": "hoy",
+                "hora": "21:55",
+                "id": "4"
+            }
+        ]
+    },
+    {
+        "nombre": "Bran Stark",
+        "imagen": "BranStark.jpg",
+        "ultima_conexion": "hoy a las 21:30",
+        "id": 5,
+        "nro": "11-4411-0515",
+        "mensajes": [
+            {
+                "autor": "yo",
+                "texto": "¿Qué estás viendo ahora, cuervo?",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "20:30",
+                "id": "1"
+            },
+            {
+                "autor": "Bran Stark",
+                "texto": "El invierno ya llegó",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "20:32",
+                "id": "2"
+            },
+            {
+                "autor": "yo",
+                "texto": "Lo mismo que Jon?",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "20:36",
+                "id": "3"
+            },
+            {
+                "autor": "Bran Stark",
+                "texto": "Es la hora",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "20:37",
+                "id": "4"
+            }
+        ]
+    },
+    {
+        "nombre": "Tyrion Lannister",
+        "imagen": "Tyrion.jpg",
+        "ultima_conexion": "hoy a las 22:00",
+        "id": 6,
+        "nro": "11-4411-0516",
+        "mensajes": [
+            {
+                "autor": "yo",
+                "texto": "Hola Tyrion, ¿cómo estás?",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "19:50",
+                "id": "1"
+            },
+            {
+                "autor": "Tyrion Lannister",
+                "texto": "Bebiendo y desarrollando estrategias, como siempre",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "19:53",
+                "id": "2"
+            },
+            {
+                "autor": "yo",
+                "texto": "No cambiás más",
+                "estado": "noEntregado",
+                "dia": "hoy",
+                "hora": "19:55",
+                "id": "3"
+            }
+        ]
+    },
+    {
+        "nombre": "Varys",
+        "imagen": "Varys.jpg",
+        "ultima_conexion": "hoy a las 20:43",
+        "id": 7,
+        "nro": "11-4411-0517",
+        "mensajes": [
+            {
+                "autor": "Varys",
+                "texto": "¿Sabés lo que le pasa a Tyron?",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "19:33",
+                "id": "1"
+            },
+            {
+                "autor": "yo",
+                "texto": "Está haciendo lo mismo de siempre, bebiendo",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "19:34",
+                "id": "2"
+            }
+        ]
+    },
+    {
+        "nombre": "Hodor",
+        "imagen": "Hodor.jpg",
+        "ultima_conexion": "hoy a las 19:15",
+        "id": 8,
+        "nro": "11-4411-0518",
+        "mensajes": [
+            {
+                "autor": "yo",
+                "texto": "Hola Hodor, cómo está Bran?",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "19:07",
+                "id": "1"
+            },
+            {
+                "autor": "Hodor",
+                "texto": "Hodoooor",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "19:10",
+                "id": "2"
+            },
+            {
+                "autor": "yo",
+                "texto": "Pero Hodor...",
+                "estado": "entregado",
+                "dia": "hoy",
+                "hora": "19:13",
+                "id": "3"
+            },
+            {
+                "autor": "Hodor",
+                "texto": "Hodoooor",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "19:15",
+                "id": "4"
+            }
+        ]
+    },
+    {
+        "nombre": "Night King",
+        "imagen": "NichtKing.jpg",
+        "ultima_conexion": "hoy a las 19:00",
+        "id": 9,
+        "nro": "11-4411-0519",
+        "mensajes": [
+            {
+                "autor": "Night King",
+                "texto": "Vamos a matarlos a todos, serán de los nuestros",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "19:00",
+                "id": "1"
+            }
+        ]
+    },
+    {
+        "nombre": "Samwell Tarly",
+        "imagen": "Sam.jpg",
+        "ultima_conexion": "hoy a las 22:59",
+        "id": 10,
+        "nro": "11-4411-0520",
+        "mensajes": [
+            {
+                "autor": "Samwell Tarly",
+                "texto": "Tenés que avisarle a Jon que el invierno ya llegó",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "18:53",
+                "id": "1"
+            },
+            {
+                "autor": "yo",
+                "texto": "Es de Invernalia, lo sabe mejor que vos",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "18:56",
+                "id": "2"
+            },
+            {
+                "autor": "Samwell Tarly",
+                "texto": "Avisale urgente!",
+                "estado": "visto",
+                "dia": "hoy",
+                "hora": "18:57",
+                "id": "3"
+            }
+        ]
+    }
+    ]

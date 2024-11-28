@@ -1,0 +1,34 @@
+.mensaje {
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.mensaje .mensaje-hora {
+    font-size: 12px;
+}
+
+.mensaje.mio {
+    background-color: #0a8b37;
+    margin-left: auto;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 0;
+}
+
+.mensaje.otro {
+    background-color: #202C33;
+    border-radius: 5px;
+    padding: 0;
+}
+
+.mensaje.encontrado {
+    background-color: yellow;
+}
+
+.lista-mensaje {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-image: url('/public/FondoDeWhatsApp.jpg');
+}
