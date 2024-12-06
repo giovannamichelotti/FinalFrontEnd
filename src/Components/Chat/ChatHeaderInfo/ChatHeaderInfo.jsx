@@ -34,7 +34,7 @@ export const ChatHeaderInfo = ({contacto, buscarMensajes}) => {
               )
               : (
                 <>
-                  <Link className='flecha' to='/'><FaArrowLeft /></Link>
+                  <Link className='flecha' to='/contactos'><FaArrowLeft /></Link>
                   <img className='imagen-chat' src={`/` + contacto.imagen}/>
                   <Link className='contacto-total' to={`/infocontacto/` + contacto.id}>
                     <div className='contacto-nombre'>{contacto.nombre}</div>

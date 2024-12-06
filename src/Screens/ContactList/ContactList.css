@@ -93,6 +93,11 @@
     margin: 0;
 }
 
+div.error {
+    color: red;
+    font-weight: bold;
+}
+
 @media screen and (min-width: 320px) {
     
 }
