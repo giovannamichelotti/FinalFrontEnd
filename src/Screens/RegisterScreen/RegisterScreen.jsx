@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
+import ENV from '../../../config/environment.js'
 
 export const RegisterScreen = () => {
     const [user, setUser] = useState({})
@@ -13,17 +14,27 @@ export const RegisterScreen = () => {
     const setEmail = (e) => {
         setUser((u) => ({...u, email: e.target.value}))
     }
-    const setPass = (e) => {
-        setUser((u) => ({...u, pass: e.target.value}))
+    const setPhone = (e) => {
+        setUser((u) => ({...u, phone: e.target.value}))
     }
-    const register = (e) => {
+    const setPass = (e) => {
+        setUser((u) => ({...u, password: e.target.value}))
+    }
+    const register = async (e) => {
         e.preventDefault()
         
         setMessage('')
         setBusy(true)
 
-        // Llamada a la API
-        const statusCode = 418
+        const url = ENV.API_URL + 'auth/register/'
+        const response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        const statusCode = response.status
 
         if (statusCode === 204) {
             setMessage('El usuario ya está registrado')
@@ -31,7 +42,7 @@ export const RegisterScreen = () => {
             setBusy(false)
             return
         }
-        if (statusCode === 200) {
+        if (statusCode === 201) {
             setMessage('Recibirá un correo para validar su mail')
             setError(false)
             return
@@ -56,11 +67,15 @@ export const RegisterScreen = () => {
                         <input placeholder='tuemail@gmail.com' value={user.email} onChange={setEmail}/>
                     </div>
                     <div>
+                        <label>Ingresa tu telefono:</label>
+                        <input placeholder='0123456789' value={user.phone} onChange={setPhone}/>
+                    </div>
+                    <div>
                         <label>Ingresa tu contraseña:</label>
-                        <input value={user.pass} onChange={setPass}/>
+                        <input value={user.password} onChange={setPass}/>
                     </div>
                     <button type='submit'>Registrar</button>
-                    <div>{message}</div>
+                    {message && (<div className={error ? "error" : ""}>{message}</div>)}
                     <Link to='/login'>Ya soy usuario</Link>
                 </form>
             </fieldset>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
+import ENV from '../../../config/environment.js'
 
 export const RecoverPasswordScreen = () => {
     const [email, setEmail] = useState('')
@@ -7,14 +8,21 @@ export const RecoverPasswordScreen = () => {
     const [error, setError] = useState(false)
     const [busy, setBusy] = useState(false)
 
-    const recover = (e) => {
+    const recover = async (e) => {
         e.preventDefault()
         
         setMessage('')
         setBusy(true)
 
-        // Llamada a la API
-        const statusCode = 200
+        const url = ENV.API_URL + 'auth/forgot-password/'
+        const response = await fetch (url, {
+            method: "POST",
+            body: JSON.stringify({email: email}),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        const statusCode = response.status
 
         if (statusCode === 401) {
             setMessage('El usuario no está registrado')
@@ -43,7 +51,7 @@ export const RecoverPasswordScreen = () => {
                         <input placeholder='tuemail@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                     <button type='submit'>Enviar</button>
-                    <div>{message}</div>
+                    {message && (<div className={error ? "error" : ""}>{message}</div>)}
                     <Link to='/login'>Iniciar sesión</Link>
                 </form>
             </fieldset>

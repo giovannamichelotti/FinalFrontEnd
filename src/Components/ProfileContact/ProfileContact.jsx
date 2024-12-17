@@ -1,49 +1,72 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import MOOK_MENSAJES from '../../contactos.json'
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import './ProfileContact.css'
 import { MdOutlineCall, MdOutlineVideocam, MdOutlineMessage, MdOutlineImage } from "react-icons/md";
 import { LuBell } from "react-icons/lu";
 import { IoMdLock } from "react-icons/io";
 import { BsClockHistory } from "react-icons/bs";
 import { PiLockLaminatedLight } from "react-icons/pi";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaPencilAlt } from "react-icons/fa";
+import ENV from '../../../config/environment.js'
 
 export const ProfileContact = ({}) => {
-
+  const navigate = useNavigate()
   const {contactoID} = useParams()
-  const [contactos, setContactos] = useState([])
   const [contacto, setContacto] = useState ({})
-  const [mensajes, setMensajes] = useState ([])
+  const [busy, setBusy] = useState(false)
 
   useEffect(() => {
-    setContactos(MOOK_MENSAJES)
+    getContacto(contactoID)
   }, []);
 
-  useEffect(() => {
-    const item = contactos.find(contacto => contacto.id === parseInt(contactoID) )
-    setContacto(item);
-    if (item) {
-      setMensajes(item.mensajes)
+  const getContacto = async (contactoID) => {
+    setBusy(true)
+    try{
+        const url = ENV.API_URL + 'contacts/' + contactoID
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem('accessToken')
+            }
+        })
+        const statusCode = response.status
+        if (statusCode === 401) {
+            navigate('/login')
+            return
+        }
+        if (statusCode === 200) {
+            const res = await response.json()
+            setContacto(res.data)
+            setBusy(false)
+            return
+        }
+        navigate('/contactos')
     }
-  }, [contactos]);
+    catch(error) {
+        console.log(error)
+        navigate('/contactos')
+    }
+}
+
 
 
   return (
     <div className='general'>
         <Link className='volver' to={contacto && `/chat/` + contacto.id}><FaArrowLeft /></Link>
+        <Link to={contacto && '/form-contacto/' + contacto.id}><FaPencilAlt/></Link>
         <div className='cabecera-profile'>
           <img src={contacto && ('/' + contacto.imagen)} className='imagen' />
           <div className='profile-nro'>
             <div className='profile-nombre'>
-              {contacto && contacto.nombre}
+              {contacto && contacto.name}
             </div>
             <div className='profile-nro'>
-              {contacto && contacto.nro}
+              {contacto && contacto.phone}
             </div>
           </div>
           <div className='ult-vez'>
-            Ult. vez {contacto && contacto.ultima_conexion}
+            Ult. vez {contacto && contacto.last_update}
           </div>
           </div>
           <div className='iconos-grandes-general'>

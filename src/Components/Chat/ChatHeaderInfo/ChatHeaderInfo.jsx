@@ -6,7 +6,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
 import { IoIosClose } from "react-icons/io";
 
-export const ChatHeaderInfo = ({contacto, buscarMensajes}) => {
+export const ChatHeaderInfo = ({contacto, buscarMensajes, busy}) => {
   
   const [termino, setTermino] = useState('')
   const [mostrarBusqueda, setMostrarBusqueda] = useState(false)
@@ -34,16 +34,26 @@ export const ChatHeaderInfo = ({contacto, buscarMensajes}) => {
               )
               : (
                 <>
-                  <Link className='flecha' to='/contactos'><FaArrowLeft /></Link>
-                  <img className='imagen-chat' src={`/` + contacto.imagen}/>
-                  <Link className='contacto-total' to={`/infocontacto/` + contacto.id}>
-                    <div className='contacto-nombre'>{contacto.nombre}</div>
-                    <div className='ultima-conexion'>{contacto.ultima_conexion}</div>
-                  </Link>
-                  <div className='iconos-header'>
-                    <IoMdSearch className='icono-header'onClick={()=> setMostrarBusqueda(true)}/>
-                    <BsThreeDotsVertical className='icono-header'/>
-                  </div>
+                  {
+                    busy
+                    ? (
+                      <div>Cargando...</div>
+                    )
+                    : (
+                      <>
+                        <Link className='flecha' to='/contactos'><FaArrowLeft /></Link>
+                        <img className='imagen-chat' src={`/` + contacto.imagen}/>
+                        <Link className='contacto-total' to={`/infocontacto/` + contacto.id}>
+                          <div className='contacto-nombre'>{contacto.name}</div>
+                          <div className='ultima-conexion'>{contacto.ultima_conexion}</div>
+                        </Link>
+                        <div className='iconos-header'>
+                          <IoMdSearch className='icono-header'onClick={()=> setMostrarBusqueda(true)}/>
+                          <BsThreeDotsVertical className='icono-header'/>
+                        </div>
+                      </>
+                    )
+                  }
                 </>
               )
             }

@@ -9,6 +9,7 @@ import { Route, Routes } from 'react-router-dom'
 import { LoaderScreen } from './Screens/LoaderScreen/LoaderScreen'
 import { RecoverPasswordScreen } from './Screens/RecoverPasswordScreen/RecoverPasswordScreen'
 import { ChangePasswordScreen } from './Screens/ChangePasswordScreen/ChangePasswordScreen'
+import { FormContactScreen } from './Screens/FormContactScreen/FormContactScreen'
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
             <Route path='/contactos' element={<ContactList/>}/>
             <Route path='/chat/:contactoID' element={<ChatScreen/>}/>
             <Route path='/infocontacto/:contactoID' element={<ProfileContact/>}/>
+            <Route path='/form-contacto/:contactoID?' element={<FormContactScreen/>}/>
         </Routes>
     )
 }

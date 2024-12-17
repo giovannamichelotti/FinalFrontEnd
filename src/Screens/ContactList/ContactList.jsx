@@ -4,11 +4,13 @@ import './ContactList.css'
 import { MdOutlineCameraAlt } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { BiSolidFolderPlus } from "react-icons/bi";
+import ENV from "../../../config/environment.js"
 
 export const ContactList = () => {
   const [contactos, setContactos] = useState([])
   const [contactosFiltrada, setContactosFiltrada] = useState([])
-  const [termino, setTermino] = useState(null)
+  const [termino, setTermino] = useState('')
   const [message, setMessage] = useState('')
   const [error, setError] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -23,7 +25,7 @@ export const ContactList = () => {
       setContactosFiltrada(contactos)
       return
     }
-    const lista = contactos.filter((item)=> item.nombre.toLowerCase().includes(termino.toLowerCase()))
+    const lista = contactos.filter((item)=> item.name.toLowerCase().includes(termino.toLowerCase()))
     setContactosFiltrada(lista)
   }, [termino])
 
@@ -34,7 +36,7 @@ export const ContactList = () => {
   const getContactos = async () => {
     try {
       setBusy(true)
-      const url = 'https://itminka.com/gio/api/contacts/'
+      const url = ENV.API_URL + 'contacts/'
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -50,7 +52,7 @@ export const ContactList = () => {
       if (statusCode === 200) {
         const res = await response.json()
         setContactos(res.data)
-        setTermino('')
+        setContactosFiltrada(res.data)
         setBusy(false)
         return
       }
@@ -66,6 +68,9 @@ export const ContactList = () => {
     }
   }
 
+  const nuevoContacto = () => {
+    navigate('/form-contacto')
+  }
 
   return (
     <div>
@@ -78,44 +83,37 @@ export const ContactList = () => {
       </h1>
       <div className='barra-busqueda'>
         <FaMagnifyingGlass className='lupita' /> 
-        <input type="text" placeholder='Buscar...' className='input-buscar' value={termino} onChange={buscar}/> 
+        <input type="text" placeholder='Buscar...' className='input-buscar' value={termino} disabled={busy} onChange={buscar}/> 
       </div>
       <ul className='lista-contactos'>
-        {
-          message && (
-            <div className={error ? "error" : ""}>{message}</div>
-          )
-        }
-        {
-          busy && (
-            <div>Cargando...</div>
-          )
-        }
-        {
-          !contactosFiltrada.length && !busy && !error && (
-            <div>No hay contactos</div>
-          )
-        }
+        {message && (<div className={error ? "error" : ""}>{message}</div>)}
+        {busy && (<div>Cargando...</div>)}
+        {contactosFiltrada && !contactosFiltrada.length && !busy && !error && (<div>No hay contactos</div>)}
         {contactosFiltrada.map(contacto=> (
           <li className='lista-contacto' key={contacto.id}>
-            <Link className='contacto' to={contacto && `/chat/` + contacto.id}>
+            <Link className='contacto' to={`/chat/` + contacto.id}>
               <img src={contacto.imagen} className='imagenes' />
               <div>
                 <div className='nombre'>
-                  {contacto.nombre} <br/>
+                  {contacto.name} <br/>
                 </div>
                 <div className='texto'>
-                  {contacto.mensajes[contacto.mensajes.length -1].texto}
+                  {contacto.mensajes && contacto.mensajes[contacto.mensajes.length -1].texto}
                 </div>
               </div>
-              <div className='tiempo'>
+              {
+                contacto.mensajes && (
+                  <div className='tiempo'>
                 {contacto.mensajes[contacto.mensajes.length - 1].dia !== 'hoy' && contacto.mensajes[contacto.mensajes.length - 1].dia} &nbsp;
                 {contacto.mensajes[contacto.mensajes.length - 1].hora}
-              </div>
+                </div>
+                )
+              }
             </Link>
           </li>
         ))}
       </ul>
+      <button type='button' onClick={nuevoContacto} className='boton-agregar'><BiSolidFolderPlus className='icono-agregar'/></button>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import ENV from '../../../config/environment.js'
 
 
 export const ChangePasswordScreen = () => {
@@ -11,14 +12,25 @@ export const ChangePasswordScreen = () => {
     const [busy, setBusy] = useState(false)
     const navigate = useNavigate()
 
-    const changePass = (e) => {
+    const changePass = async (e) => {
         e.preventDefault()
 
         setMessage('')
         setBusy(true)
 
-        //Llamada a la API
-        const statusCode = 200
+        const url = ENV.API_URL + 'auth/reset-password/'
+        const response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                token: token,
+                password: pass,
+                password2: pass2
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        const statusCode = response.status
 
         if (statusCode === 401) {
             setMessage('El token es invalido')
