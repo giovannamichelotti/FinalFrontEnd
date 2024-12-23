@@ -9,7 +9,7 @@
     background-color: #202C33;
     padding: 20px;
     border-radius: 10px;
-    width: 300px;
+    width: 37vw;
 }
 
 fieldset {
@@ -22,7 +22,7 @@ fieldset {
 
 .forms-input {
     margin-left: -26px;
-    width: 280px;
+    width: 34vw;
     margin-right: -26px;
 /*     background-color: #202C33; */
     border-radius: 5px;
@@ -37,7 +37,7 @@ fieldset {
 }
 
 .forms-boton {
-    width: 291px;
+    width: 36vw;
     margin-left: -16px;
     border-radius: 5px;
     height: 37px;
@@ -65,12 +65,12 @@ fieldset {
     }
 
     .forms-input {
-        width: 192px;
+        width: 59vw;
         height: 15px;
     }
 
     .forms-boton {
-        width: 204px;
+        width: 61vw;
         height: 33px;
         font-size: 14px;
     }
