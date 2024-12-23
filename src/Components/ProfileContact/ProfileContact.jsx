@@ -54,7 +54,7 @@ export const ProfileContact = ({}) => {
         <Link className='volver' to={contacto && `/chat/` + contacto.id}><FaArrowLeft /></Link>
         <Link className='lapiz' to={contacto && '/form-contact/' + contacto.id}><FaPencilAlt/></Link>
         <div className='cabecera-profile'>
-          <img src={contacto && ('/' + contacto.image)} className='imagen' />
+          <img src={contacto && (contacto.image)} className='imagen' />
           <div className='profile-nro'>
             <div className='profile-nombre'>
               {contacto && contacto.name}

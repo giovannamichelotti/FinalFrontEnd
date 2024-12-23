@@ -41,7 +41,7 @@ export const ChatHeaderInfo = ({contacto, buscarMensajes, busy}) => {
                     : (
                       <>
                         <Link className='flecha' to='/'><FaArrowLeft /></Link>
-                        <img className='imagen-chat' src={`/` + contacto.image}/>
+                        <img className='imagen-chat' src={contacto.image}/>
                         <Link className='contacto-total' to={`/contact/` + contacto.id}>
                           <div className='contacto-nombre'>{contacto.name}</div>
                           <div className='ultima-conexion'>{contacto.ultima_conexion}</div>
