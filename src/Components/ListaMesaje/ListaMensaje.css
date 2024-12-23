@@ -23,7 +23,8 @@
 }
 
 .mensaje.encontrado {
-    background-color: yellow;
+    background-color: rgb(254, 254, 130);
+    color: black;
 }
 
 .lista-mensaje {
@@ -31,4 +32,22 @@
     flex-direction: column;
     align-items: flex-start;
     background-image: url('/public/FondoDeWhatsApp.jpg');
+    height: 100%;
+    overflow-y: scroll;
+}
+
+@media screen and (max-width: 420px) {
+    .mensaje .mensaje-hora {
+        font-size: 10px;
+    }
+
+    .mensaje.mio {
+        font-size: 13px;
+        padding: 0;
+    }
+    
+    .mensaje.otro {
+        font-size: 13px;
+        padding: 0;
+    }
 }

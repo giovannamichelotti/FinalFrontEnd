@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { ChatHeaderInfo, ListaMensaje, MensajeForm } from '../../Components/Chat'
 import { useParams, useNavigate } from "react-router-dom";
-import './ChatScreen.css'
+import { ChatHeaderInfo, ListaMensaje, MensajeForm } from '../../Components'
 import ENV from "../../../config/environment.js"
-
-/*
-2. Agregar message, busy y error tal como teníamos en contactos dentro de ChatScreen en todas las llamadas a la API
-3. Conectar el detalle del contacto con la API: ayuda es tomar como ejemplo lo que hicimos con el ChatScreen para traer los datos del contacto.
-*/
+import './ChatScreen.css'
 
 export const ChatScreen = () => {
     const navigate = useNavigate()
@@ -40,17 +35,17 @@ export const ChatScreen = () => {
                 navigate('/login')
                 return
             }
-            if (statusCode === 200) {
+            if (statusCode === 302) {
                 const res = await response.json()
                 setContacto(res.data)
                 getMensajes(res.data.phone)
                 setContactBusy(false)
                 return
             }
-            navigate('/contactos')
+            navigate('/')
         }
         catch(error) {
-            navigate('/contactos')
+            navigate('/')
         }
     }
 
@@ -78,12 +73,21 @@ export const ChatScreen = () => {
                 setMessage('')
                 return
             }
-            setMessage('Hubo un error')
-            setError(true)
-            setBusy(false)
+            if (statusCode === 204) {
+                setBusy(false)
+                setMessage('')
+                return
+            }
+
+            const body = await response.json()
+            let msg = 'Hubo un error'
+            if (body.error) {
+                msg = body.error
+            }
+            throw new Error(msg)
         }
-        catch(error) {
-            setMessage('Hubo un error(2)')
+        catch(err) {
+            setMessage(err.message)
             setError(true)
             setBusy(false)
         }
@@ -94,7 +98,7 @@ export const ChatScreen = () => {
         try {
             const mensajeNuevo = {
                 destination: contacto.phone,
-                message: mensaje
+                text: mensaje
             }
             const url = ENV.API_URL + 'messages/'
             const response = await fetch(url, {
@@ -110,16 +114,19 @@ export const ChatScreen = () => {
                 navigate('/login')
                 return
             } 
-            if (statusCode === 200) {
+            if (statusCode === 201) {
                 getMensajes(contacto.phone)
                 return
             }
-            setMessage('Hubo un error')
-            setError(true)
-            setBusy(false)
+            const body = await response.json()
+            let msg = 'Hubo un error'
+            if (body.error) {
+                msg = body.error
+            }
+            throw new Error(msg)
         }
-        catch(error) {
-            setMessage('Hubo un error(2)')
+        catch(err) {
+            setMessage(err.message)
             setError(true)
             setBusy(false)
         }

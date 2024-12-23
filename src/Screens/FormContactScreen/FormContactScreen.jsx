@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import './FormContactScreen.css'
 import { FaArrowLeft } from "react-icons/fa";
 import ENV from '../../../config/environment.js'
+import './FormContactScreen.css'
 
 export const FormContactScreen = ({}) => {
     const navigate = useNavigate()
@@ -47,17 +47,17 @@ export const FormContactScreen = ({}) => {
                 navigate('/login')
                 return
             }
-            if (statusCode === 200) {
+            if (statusCode === 302) {
                 const res = await response.json()
                 setContacto(res.data)
                 setBusy(false)
                 return
             }
-            navigate('/contactos')
+            navigate('/')
         }
         catch(error) {
             console.log(error)
-            navigate('/contactos')
+            navigate('/')
         }
     }
 
@@ -83,45 +83,51 @@ export const FormContactScreen = ({}) => {
             } 
             if (statusCode === 200) {
                 const res = await response.json()
-                setID(res.data.id)
+                if (!contacto.id) {
+                    setID(res.data.id)
+                }
                 setMessage('Contacto guardado')
                 setError(false)
                 setBusy(false)
                 return
             }
-            setMessage('Hubo un error')
-            setError(true)
-            setBusy(false)
+            const body = await response.json()
+            let msg = 'Hubo un error'
+            if (body.error) {
+                msg = body.error
+            }
+            throw new Error(msg)
         }
-        catch(error) {
-            setMessage('Hubo un error(2)')
+        catch(err) {
+            setMessage(err.message)
             setError(true)
             setBusy(false)
-            console.log(error)
         }
     }
 
     return (
-        <div className='general'>
-            <Link className='volver' to={contacto && `/chat/` + contacto.id}><FaArrowLeft /></Link>
-            <fieldset disabled={busy}>
-                <form onSubmit={saveContact}>
-                    <div className='profile-nombre'>
-                        <label>Ingresa nombre:</label>
-                        <input placeholder='Nombre' value={contacto.name} onChange={setName}/>
-                    </div>
-                    <div className='profile-nombre'>
-                        <label>Ingresa Email:</label>
-                        <input placeholder='Email' value={contacto.email} onChange={setEmail}/>
-                    </div>
-                    <div className='profile-nro'>
-                        <label>Ingresa telefono:</label>
-                        <input placeholder='Telefono' value={contacto.phone} onChange={setPhone}/>
-                    </div>
-                    <button type='submit'>Guardar</button>
-                </form>
-            </fieldset>
-            {message && (<div className={error ? "error" : ""}>{message}</div>)}
+        <div className="pantalla-login">
+            <div className="contenedor">
+                <Link className='form-volver' to={contacto && `/chat/` + contacto.id}><FaArrowLeft /></Link>
+                <fieldset disabled={busy}>
+                    <form onSubmit={saveContact}>
+                        <div>
+                            <label className="forms-label">Ingresa nombre:</label> <br/> 
+                            <input className="forms-input" placeholder='Nombre' value={contacto.name} onChange={setName}/>
+                        </div>
+                        <div>
+                            <label className="forms-label">Ingresa Email:</label> <br/>
+                            <input type='email' className="forms-input" placeholder='Email' value={contacto.email} onChange={setEmail}/>
+                        </div>
+                        <div>
+                            <label className="forms-label">Ingresa telefono:</label> <br/>
+                            <input type='number' className="forms-input" placeholder='Telefono' value={contacto.phone} onChange={setPhone}/>
+                        </div>
+                        <button className="forms-boton" type='submit'>Guardar</button>
+                    </form>
+                </fieldset>
+                {message && (<div className={error ? "error" : ""}>{message}</div>)}
+            </div>
         </div>
     )
 }

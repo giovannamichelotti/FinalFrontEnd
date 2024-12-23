@@ -9,52 +9,64 @@ export const RecoverPasswordScreen = () => {
     const [busy, setBusy] = useState(false)
 
     const recover = async (e) => {
-        e.preventDefault()
+        try {
+            e.preventDefault()
         
-        setMessage('')
-        setBusy(true)
+            setMessage('')
+            setBusy(true)
 
-        const url = ENV.API_URL + 'auth/forgot-password/'
-        const response = await fetch (url, {
-            method: "POST",
-            body: JSON.stringify({email: email}),
-            headers: {
-                "Content-Type": "application/json",
+            const url = ENV.API_URL + 'auth/forgot-password/'
+            const response = await fetch (url, {
+                method: "POST",
+                body: JSON.stringify({email: email}),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+            const statusCode = response.status
+
+            if (statusCode === 401) {
+                setMessage('El usuario no está registrado')
+                setError(true)
+                setBusy(false)
+                return
             }
-        })
-        const statusCode = response.status
+            if (statusCode === 200) {
+                setMessage('Recibirá un correo para cambiar su contraseña')
+                setError(false)
+                return
+            }
 
-        if (statusCode === 401) {
-            setMessage('El usuario no está registrado')
+            const body = await response.json()
+            let msg = 'Hubo un error'
+            if (body.error) {
+                msg = body.error
+            }
+            throw new Error(msg)
+        }
+        catch(err) {
+            setMessage(err.message)
             setError(true)
             setBusy(false)
-            return
         }
-        if (statusCode === 200) {
-            setMessage('Recibirá un correo para cambiar su contraseña')
-            setError(false)
-            return
-        }
-
-        setMessage('Hubo un error')
-        setError(true)
-        setBusy(false)
     }
     
     return (
-        <div>
-            <h1>Recuperar clave</h1>
-            <fieldset disabled={busy}>
-                <form onSubmit={recover}>
-                    <div>
-                        <label>Ingresa tu email:</label>
-                        <input placeholder='tuemail@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                    </div>
-                    <button type='submit'>Enviar</button>
-                    {message && (<div className={error ? "error" : ""}>{message}</div>)}
-                    <Link to='/login'>Iniciar sesión</Link>
-                </form>
-            </fieldset>
+        <div className="pantalla-login">
+            <div className="contenedor"> 
+                <h1>Recuperar clave</h1>
+                <fieldset disabled={busy}>
+                    <form onSubmit={recover}>
+                        <div>
+                            <label className="forms-label">Ingresa tu email:</label>
+                            <input type='email' className="forms-input" placeholder='tuemail@gmail.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        </div>
+                        <button className="forms-boton" type='submit'>Enviar</button> <br/>
+                        {message && (<div className={error ? "error" : ""}>{message}</div>)}
+                        <Link to='/login' className="forms-link">Iniciar sesión</Link>
+                    </form>
+                </fieldset>
+            </div>
         </div>
     )
 }

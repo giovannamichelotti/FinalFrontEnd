@@ -1,7 +1,81 @@
-/* .contenedor {
+.pantalla-login {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color: #202C33;
-} */
+    height: 100vh;
+}
 
+.contenedor {
+    background-color: #202C33;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
+
+fieldset {
+    border: none;
+}
+
+.forms-label {
+    margin-left: -30px;
+}
+
+.forms-input {
+    margin-left: -26px;
+    width: 280px;
+    margin-right: -26px;
+/*     background-color: #202C33; */
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+/*     font: inherit; */
+/* outline: none; */
+}
+
+.forms-input:focus {
+    border-color: rgb(0, 0, 0);
+}
+
+.forms-boton {
+    width: 291px;
+    margin-left: -16px;
+    border-radius: 5px;
+    height: 37px;
+    font-size: 15px;
+}
+
+.forms-link {
+    color: inherit;
+    text-decoration: none;
+    margin-left: -20px;
+}
+
+.forms-link:hover {
+    color: #007BFF;
+}
+
+@media screen and (max-width: 420px) {
+    .contenedor {
+        width: 70%; 
+        padding: 15px;
+    }
+
+    .forms-label {
+        font-size: 15px;
+    }
+
+    .forms-input {
+        width: 192px;
+        height: 15px;
+    }
+
+    .forms-boton {
+        width: 204px;
+        height: 33px;
+        font-size: 14px;
+    }
+    
+    .forms-link {
+        font-size: 13px;
+    }
+}

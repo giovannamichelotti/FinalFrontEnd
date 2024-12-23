@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import './ContactList.css'
 import { MdOutlineCameraAlt } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { BiSolidFolderPlus } from "react-icons/bi";
 import ENV from "../../../config/environment.js"
+import './ContactListScreen.css'
 
-export const ContactList = () => {
+export const ContactListScreen = () => {
   const [contactos, setContactos] = useState([])
   const [contactosFiltrada, setContactosFiltrada] = useState([])
   const [termino, setTermino] = useState('')
@@ -46,6 +46,7 @@ export const ContactList = () => {
       })
       const statusCode = response.status
       if (statusCode === 401) {
+        console.log('Redirigiendo a login')
         navigate('/login')
         return
       }
@@ -56,20 +57,28 @@ export const ContactList = () => {
         setBusy(false)
         return
       }
+      if (statusCode === 204) {
+        setError(false)
+        setBusy(false)
+        return
+      }
 
-      setMessage('Hubo un error')
-      setError(true)
-      setBusy(false)
+      const body = await response.json()
+      let msg = 'Hubo un error'
+      if (body.error) {
+        msg = body.error
+      }
+      throw new Error(msg)
     }
-    catch(error) {
-      setMessage('Hubo un error(2)')
+    catch(err) {
+      setMessage(err.message)
       setError(true)
       setBusy(false)
     }
   }
 
   const nuevoContacto = () => {
-    navigate('/form-contacto')
+    navigate('/form-contact')
   }
 
   return (
@@ -92,13 +101,10 @@ export const ContactList = () => {
         {contactosFiltrada.map(contacto=> (
           <li className='lista-contacto' key={contacto.id}>
             <Link className='contacto' to={`/chat/` + contacto.id}>
-              <img src={contacto.imagen} className='imagenes' />
+              <img src={contacto.image} className='imagenes' />
               <div>
                 <div className='nombre'>
                   {contacto.name} <br/>
-                </div>
-                <div className='texto'>
-                  {contacto.mensajes && contacto.mensajes[contacto.mensajes.length -1].texto}
                 </div>
               </div>
               {

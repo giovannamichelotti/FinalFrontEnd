@@ -23,6 +23,17 @@ body {
     box-sizing: border-box;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
 @media screen and (max-width: 400px) {
     div#root, div#root > div {
         padding: 0 !important;

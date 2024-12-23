@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import './ProfileContact.css'
 import { MdOutlineCall, MdOutlineVideocam, MdOutlineMessage, MdOutlineImage } from "react-icons/md";
 import { LuBell } from "react-icons/lu";
 import { IoMdLock } from "react-icons/io";
@@ -8,6 +7,7 @@ import { BsClockHistory } from "react-icons/bs";
 import { PiLockLaminatedLight } from "react-icons/pi";
 import { FaArrowLeft, FaPencilAlt } from "react-icons/fa";
 import ENV from '../../../config/environment.js'
+import './ProfileContact.css'
 
 export const ProfileContact = ({}) => {
   const navigate = useNavigate()
@@ -35,38 +35,33 @@ export const ProfileContact = ({}) => {
             navigate('/login')
             return
         }
-        if (statusCode === 200) {
+        if (statusCode === 302) {
             const res = await response.json()
             setContacto(res.data)
             setBusy(false)
             return
         }
-        navigate('/contactos')
+        navigate('/')
     }
     catch(error) {
         console.log(error)
-        navigate('/contactos')
+        navigate('/')
     }
 }
-
-
 
   return (
     <div className='general'>
         <Link className='volver' to={contacto && `/chat/` + contacto.id}><FaArrowLeft /></Link>
-        <Link to={contacto && '/form-contacto/' + contacto.id}><FaPencilAlt/></Link>
+        <Link className='lapiz' to={contacto && '/form-contact/' + contacto.id}><FaPencilAlt/></Link>
         <div className='cabecera-profile'>
-          <img src={contacto && ('/' + contacto.imagen)} className='imagen' />
+          <img src={contacto && ('/' + contacto.image)} className='imagen' />
           <div className='profile-nro'>
             <div className='profile-nombre'>
               {contacto && contacto.name}
             </div>
-            <div className='profile-nro'>
+            <div className='profile-nro2'>
               {contacto && contacto.phone}
             </div>
-          </div>
-          <div className='ult-vez'>
-            Ult. vez {contacto && contacto.last_update}
           </div>
           </div>
           <div className='iconos-grandes-general'>

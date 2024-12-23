@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowLeft } from "react-icons/fa";
-import './ChatHeaderInfo.css'
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { IoMdSearch } from "react-icons/io";
-import { IoIosClose } from "react-icons/io";
+import { IoMdSearch, IoIosClose } from "react-icons/io";
+import './ChatHeaderInfo.css'
 
 export const ChatHeaderInfo = ({contacto, buscarMensajes, busy}) => {
   
@@ -41,9 +40,9 @@ export const ChatHeaderInfo = ({contacto, buscarMensajes, busy}) => {
                     )
                     : (
                       <>
-                        <Link className='flecha' to='/contactos'><FaArrowLeft /></Link>
-                        <img className='imagen-chat' src={`/` + contacto.imagen}/>
-                        <Link className='contacto-total' to={`/infocontacto/` + contacto.id}>
+                        <Link className='flecha' to='/'><FaArrowLeft /></Link>
+                        <img className='imagen-chat' src={`/` + contacto.image}/>
+                        <Link className='contacto-total' to={`/contact/` + contacto.id}>
                           <div className='contacto-nombre'>{contacto.name}</div>
                           <div className='ultima-conexion'>{contacto.ultima_conexion}</div>
                         </Link>

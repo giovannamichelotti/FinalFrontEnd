@@ -3,15 +3,15 @@ import './ListaMensaje.css'
 
 export const ListaMensaje = ({mensajes, mensajesEncontrados, mensaje, error}) => {
 
-const [myPhone, setMyPhone] = useState('')
+  const [myPhone, setMyPhone] = useState('')
 
-useEffect(() => {
-  setMyPhone(localStorage.getItem('myPhone'))
-}, [])
+  useEffect(() => {
+    setMyPhone(localStorage.getItem('myPhone'))
+  }, [])
 
-const mensajeFueEncontrado = (mensajeId) => {
-  return mensajesEncontrados.find(m => m.id == mensajeId)
-}
+  const mensajeFueEncontrado = (mensajeId) => {
+    return mensajesEncontrados.find(m => m.id == mensajeId)
+  }
 
   return (
     <div className='lista-mensaje'>
