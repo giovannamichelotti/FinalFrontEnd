@@ -26,9 +26,9 @@ export const ChatHeaderInfo = ({contacto, buscarMensajes, busy}) => {
             {
               mostrarBusqueda 
               ? (
-                <form onSubmit={preventDefault}>
-                <IoIosClose onClick={() => setMostrarBusqueda(false)} />
-                <input type="text" value={termino} onChange={cambiaTermino} />
+                <form onSubmit={preventDefault} className='form-info'>
+                <FaArrowLeft onClick={() => setMostrarBusqueda(false)} className='icono-info'/>
+                <input type="text" value={termino} onChange={cambiaTermino} placeholder='Buscar...' className='input-info'/>
               </form>
               )
               : (
@@ -44,7 +44,6 @@ export const ChatHeaderInfo = ({contacto, buscarMensajes, busy}) => {
                         <img className='imagen-chat' src={contacto.image}/>
                         <Link className='contacto-total' to={`/contact/` + contacto.id}>
                           <div className='contacto-nombre'>{contacto.name}</div>
-                          <div className='ultima-conexion'>{contacto.ultima_conexion}</div>
                         </Link>
                         <div className='iconos-header'>
                           <IoMdSearch className='icono-header'onClick={()=> setMostrarBusqueda(true)}/>

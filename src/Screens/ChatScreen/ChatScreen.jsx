@@ -132,8 +132,11 @@ export const ChatScreen = () => {
         }
     }
 
-    const buscarMensajes = (texto) => {
-        const mensajesEncontrados = mensajes.filter((item)=> item.texto.toLowerCase().includes(texto.toLowerCase()))
+    const buscarMensajes = (message) => {
+        let mensajesEncontrados = []
+        if (message !== '') {
+            mensajesEncontrados = mensajes.filter((item)=> item.message.toLowerCase().includes(message.toLowerCase()))
+        }
         setMensajesEncontrados(mensajesEncontrados)
     } 
     
